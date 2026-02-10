@@ -1,7 +1,11 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
 :root {
   --primary-color: #f1f1f1;
   --secondary-color: #001f3d;
   --tertiary-color: #fd4520;
+  --text-color: #001e3dc5;
 }
 
 html {
@@ -19,6 +23,15 @@ body {
   min-height: 100%;
   width: 100%;
   background-color: var(--primary-color);
+}
+
+::-webkit-scrollbar{
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: var(--secondary-color);
+  border-radius: 10px;
 }
 
 /* utility classes */
