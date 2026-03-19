@@ -99,30 +99,32 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
         </div>
       </UFormField> -->
       <UFormField
-      name="password"
-      label="Password"
-      size="lg"
-      required
-      class="w-full"
-    >
-      <UInput
-        class="w-full"
-        type="password"
-        placeholder="Enter your password"
+        name="password"
+        label="Password"
+        size="lg"
         required
-        :ui="{
-          base: 'bg-transparent text-indigo-950',
-        }"
-      />
-    </UFormField>
+        class="w-full"
+      >
+        <UInput
+          class="w-full"
+          type="password"
+          placeholder="Enter your password"
+          required
+          :ui="{
+            base: 'bg-transparent text-indigo-950',
+          }"
+        />
+      </UFormField>
       <div class="captcha-holder">
-        <UCheckbox required label="I am not a Robot" class="check-box-text"/>
+        <UCheckbox required label="I am not a Robot" class="check-box-text" />
       </div>
       <UButton
         size="xl"
         type="submit"
-        color="primary"
-        class="mt-3 w-full justify-center submit-btn text-indig-950"
+        :ui="{
+          base: 'text-indigo-50 bg-[#001f3d]',
+        }"
+        class="mt-3 w-full justify-center submit-btn"
         :loading="isSubmitting"
         >Submit</UButton
       >
@@ -145,26 +147,26 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
 
 .submit-btn {
   font-family: "Inter", sans-serif;
-  /* color: var(--primary-color); */
   padding: 10px 0px;
-  /* background-color: orange; */
 }
 
-/* .submit-btn:hover{
+.submit-btn:hover {
   background-color: transparent;
   border: 2px solid var(--secondary-color);
   color: var(--secondary-color);
-} */
+}
 
 .captcha-holder {
   border-radius: 7px;
   box-sizing: border-box;
   padding: 15px;
   /* box-shadow: 9px 10px 30px -2px rgba(0,0,0,0.45); */
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  box-shadow:
+    rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
-.check-box-text{
+.check-box-text {
   color: var(--secondary-color);
 }
 </style>

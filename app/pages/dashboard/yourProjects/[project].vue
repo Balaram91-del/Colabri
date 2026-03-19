@@ -9,7 +9,16 @@
           </div>
         </div>
       </div>
-      <div class="project-info-container"></div>
+      <div class="project-info-container">
+        <h2>Deadline: <span>1st April 2025</span></h2>
+        <h2>Total Commits: <span>10</span></h2>
+        <h2>Commits by Each Individual: </h2>
+        <div class="commits-by-individual-container">
+          <p>Bojack: <span>5</span></p>
+          <p>Bojack: <span>3</span></p>
+          <p>Bojack: <span>2</span></p>
+        </div>
+      </div>
       <div class="comments-container">
         <h1>New Comments</h1>
         <div class="comments">
@@ -254,6 +263,33 @@ h1 {
   }
 }
 
+.project-info-container{
+  display: flex;
+  flex-direction: column;
+  h2{
+    font-weight: 600;
+  }
+
+  .commits-by-individual-container{
+    display: flex;
+    gap: 20px;
+    margin-top: 5px;
+    p{
+      font-family: 'Raleway';
+      font-weight: 500;
+      box-shadow: 8px 10px 30px 0 rgba(22, 45, 61, 0.2);
+      padding: 5px 10px;
+      corner-shape: squircle;
+      border-radius: 10px;
+    }
+
+    p:hover{
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+    }
+  }
+}
+
 .comments-container {
   padding: 10px 20px;
   border-radius: 15px;
@@ -330,6 +366,7 @@ h1 {
   font-family: 'Raleway';
   font-weight: 600;
   margin-bottom: 10px;
+  box-shadow: none !important;
 }
 
 .task{
@@ -337,6 +374,10 @@ h1 {
   width: 100%;
   justify-content: space-around;
   font-family: 'Inter';
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 7px 0px;
+  corner-shape: squircle;
+  border-radius: 5px;
 
   .task-description{
     width: 40%;

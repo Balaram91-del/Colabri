@@ -5,7 +5,7 @@
         <h1 class="logo">All Current Projects</h1>
       </header>
       
-      <nuxtLink class="project" to="/dashboard/yourProjects/Colabri">
+      <nuxtLink class="project" to="">
         <h2 class="project-title">
           <span>01. Project Title: </span> Studen project - mentor match hub
           with collaborations.
@@ -18,7 +18,7 @@
           and real time collaborations.
         </p>
       </nuxtLink>
-      <nuxtLink class="project" to="/dashboard/yourProjects/Colabri">
+      <nuxtLink class="project" to="">
         <h2 class="project-title">
           <span>01. Project Title: </span> Studen project - mentor match hub
           with collaborations.
@@ -31,7 +31,7 @@
           and real time collaborations.
         </p>
       </nuxtLink>
-      <nuxtLink class="project" to="/dashboard/yourProjects/Colabri">
+      <nuxtLink class="project" to="">
         <h2 class="project-title">
           <span>01. Project Title: </span> Studen project - mentor match hub
           with collaborations.

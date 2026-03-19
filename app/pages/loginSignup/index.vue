@@ -90,13 +90,12 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
     </div>
 
     <UButton
-      color="primary"
       size="xl"
       type="submit"
       class="mt-3 w-full justify-center submit-btn"
       :loading="isSubmitting"
       :ui="{
-        base:'text-indigo-950'
+        base:'text-indigo-50 bg-[#001f3d]'
       }"
       >Submit</UButton
     >
@@ -150,7 +149,9 @@ p a {
   color: var(--tertiary-color);
 }
 
-/* .submit-btn {
-  color: var(--primary-color);
-} */
+.submit-btn:hover {
+  background-color: transparent;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
 </style>
