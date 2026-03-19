@@ -70,7 +70,7 @@ function startCounters() {
     </div>
     <menu>
       <nuxt-link to="/">HOME</nuxt-link>
-      <nuxt-link to="/dashboard/projects">PROJECTS</nuxt-link>
+      <nuxt-link to="/dashboard/allProjects">PROJECTS</nuxt-link>
       <nuxt-link to="/dashboard/mentors">MENTORS</nuxt-link>
       <nuxt-link to="/about">ABOUT US</nuxt-link>
     </menu>
@@ -88,7 +88,7 @@ function startCounters() {
         </h3>
         <div class="btn-container">
           <nuxt-link to="/loginSignup" class="secondary-btn">Sign In</nuxt-link>
-          <nuxt-link to="/dashboard/test_series/topics" class="primary-btn">Mentors</nuxt-link>
+          <nuxt-link to="/dashboard/mentors" class="primary-btn">Mentors</nuxt-link>
           <!-- <PrimaryButton title="Sample Test"/> -->
         </div>
       </div>

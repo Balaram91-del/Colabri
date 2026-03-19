@@ -2,31 +2,31 @@
 const questions = [
   {
     id: 0,
-    question: "What is Carbon Footprint ?",
+    question: "What is Colabri & How to use it ?",
     answer:
       "A Carbon Footprint is the total amount of greenhouse gases(GHGs), including carbon dioxide and methane, released into the atmosphere as a result of individual's, organization's, or product's activities.",
   },
   {
     id: 1,
-    question: "How to Calculate Carbon Footprint ?",
+    question: "How to find a Mentor ?",
     answer:
       "To calculate a carbon footprint, first identify the sources of greenhouse gas emissions, such as energy use, transportation, and waste. Then, collect the data for each activity (e.g., kilowatt-hours of electricity, miles driven) and multiply it by the corresponding emission factor to get the total greenhouse gas emissions from that activity. Finally, add up the emissions from all activities to find the total carbon footprint.",
   },
   {
     id: 2,
-    question: "How to Reduce your Carbon Footprint ?",
+    question: "How to create a Project ?",
     answer:
       "To reduce your carbon footprint, make changes to your transportation, diet, and energy use, and be a more mindful consumer by reducing waste and reusing items. Sustainable choices like using public transport, cycling, or driving electric vehicles are effective, as is adopting a plant-based diet or reducing meat consumption. Improving home energy efficiency with LED bulbs and renewable energy sources like solar panels also makes a significant difference. ",
   },
   {
     id: 3,
-    question: "What is Carbon Offset ?",
+    question: "How to join a Project ?",
     answer:
       "Carbon offsetting is the process of compensating for greenhouse gas emissions by funding projects that remove or prevent the release of an equivalent amount of carbon dioxide (CO₂) or other greenhouse gases elsewhere. This practice has become a central tool for individuals, organizations, and even governments seeking to balance their environmental impact and accelerate the transition to a lower-carbon economy. In this comprehensive guide, you’ll learn everything you need to know about carbon offsetting—how it works, why it matters, key standards for quality assurance, the types of projects involved, frequently asked questions, and how to take meaningful action through Coffset.",
   },
   {
     id: 4,
-    question: "What is Global Warmming ?",
+    question: "How to delete my Account ?",
     answer:
       "Global warming is the long-term increase in Earth's average surface temperature, primarily caused by human activities like burning fossil fuels and deforestation. This is due to the buildup of greenhouse gases, such as carbon dioxide, which trap heat in the atmosphere, leading to climate change and its associated effects like extreme weather events and rising sea levels.",
   },

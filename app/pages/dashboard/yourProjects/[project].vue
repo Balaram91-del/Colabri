@@ -1,0 +1,391 @@
+<template>
+  <main>
+    <div class="content-container">
+      <div class="project-overview-container">
+        <div class="project-header">
+          <div class="welcome-message">
+            <h1 class="logo">Welcome, Balram!</h1>
+            <p>Here is your project Colabri</p>
+          </div>
+        </div>
+      </div>
+      <div class="project-info-container"></div>
+      <div class="comments-container">
+        <h1>New Comments</h1>
+        <div class="comments">
+          <div class="comment">
+            <div>
+              <img
+                width="48"
+                height="48"
+                src="https://img.icons8.com/color/48/user-male-circle--v11.png"
+                alt="user-male-circle--v11"
+              />
+            </div>
+            <div>
+              <h3>Bojack</h3>
+              <p>Updated the layout</p>
+            </div>
+            <div>
+              <i class="ri-arrow-right-s-fill"></i>
+            </div>
+          </div>
+          <div class="comment">
+            <div>
+              <img
+                width="48"
+                height="48"
+                src="https://img.icons8.com/color/48/user-male-circle--v11.png"
+                alt="user-male-circle--v11"
+              />
+            </div>
+            <div>
+              <h3>Bojack</h3>
+              <p>Updated the layout</p>
+            </div>
+            <div>
+              <i class="ri-arrow-right-s-fill"></i>
+            </div>
+          </div>
+          <div class="comment">
+            <div>
+              <img
+                width="48"
+                height="48"
+                src="https://img.icons8.com/color/48/user-male-circle--v11.png"
+                alt="user-male-circle--v11"
+              />
+            </div>
+            <div>
+              <h3>Bojack</h3>
+              <p>Updated the layout</p>
+            </div>
+            <div>
+              <i class="ri-arrow-right-s-fill"></i>
+            </div>
+          </div>
+          <button class="add-comment-btn">
+            <img
+              width="35"
+              height="35"
+              src="https://img.icons8.com/arcade/64/add.png"
+              alt="add"
+            />
+            <h3>Add Comment</h3>
+          </button>
+        </div>
+      </div>
+      <div class="tasks-container">
+        <h1>Your Tasks</h1>
+        <div class="task task-header">
+          <div class="task-description">
+            <!-- <input type="checkbox" id="task" />
+            <label for="task">Add the task compliation feature</label> -->
+            <p>Task Description</p>
+          </div>
+          <div class="stage">
+            <p>Stage</p>
+          </div>
+          <div class="deadline">
+            <p>Deadline</p>
+          </div>
+          <div class="status">
+            <p>Status</p>
+          </div>
+          <div class="priority">
+            <p>Priority</p>
+          </div>
+        </div>
+        <div class="task">
+          <div class="task-description">
+            <input type="checkbox" id="task" />
+            <label for="task">Add the task compliation feature</label>
+          </div>
+          <div class="stage">
+            <p>Ideation</p>
+          </div>
+          <div class="deadline">
+            <p>Fri Feb 27</p>
+          </div>
+          <div class="status">
+            <p>In Progress</p>
+          </div>
+          <div class="priority">
+            <p>High</p>
+          </div>
+        </div>
+        <div class="task">
+          <div class="task-description">
+            <input type="checkbox" id="task" />
+            <label for="task">Add the task compliation feature</label>
+          </div>
+          <div class="stage">
+            <p>Ideation</p>
+          </div>
+          <div class="deadline">
+            <p>Fri Feb 27</p>
+          </div>
+          <div class="status">
+            <p>In Progress</p>
+          </div>
+          <div class="priority">
+            <p>High</p>
+          </div>
+        </div>
+        <div class="task">
+          <div class="task-description">
+            <input type="checkbox" id="task" />
+            <label for="task">Add the task compliation feature</label>
+          </div>
+          <div class="stage">
+            <p>Ideation</p>
+          </div>
+          <div class="deadline">
+            <p>Fri Feb 27</p>
+          </div>
+          <div class="status">
+            <p>In Progress</p>
+          </div>
+          <div class="priority">
+            <p>High</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aside>
+      <div class="calender-container">
+        <h1>Your Calender</h1>
+        <UCalendar color="neutral" />
+      </div>
+      <div class="team-container">
+        <h1>Your Team</h1>
+        <div class="team-members">
+          <div class="profile">
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/color/48/user-male-circle--v11.png"
+              alt="user-male-circle--v11"
+            />
+            <h3>Bojack H.</h3>
+            <p>Project Mentor</p>
+          </div>
+          <div class="profile">
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/color/48/user-male-circle--v11.png"
+              alt="user-male-circle--v11"
+            />
+            <h3>Bojack H.</h3>
+            <p>Team Lead</p>
+          </div>
+          <div class="profile">
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/color/48/user-male-circle--v11.png"
+              alt="user-male-circle--v11"
+            />
+            <h3>Bojack H.</h3>
+            <p>Developer</p>
+          </div>
+          <div class="profile">
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/color/48/user-male-circle--v11.png"
+              alt="user-male-circle--v11"
+            />
+            <h3>Bojack H.</h3>
+            <p>Developer</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+</template>
+
+<style scoped>
+main {
+  width: 100%;
+  display: flex;
+  position: relative;
+  padding: 10px 20px;
+  gap: 2%;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--tertiary-color);
+  font-family: "KoHo";
+  font-weight: 700;
+}
+
+.content-container {
+  width: 75%;
+  top: 0;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+.project-overview-container {
+  width: 100%;
+}
+
+.project-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.welcome-message {
+  p {
+    font-size: 1.3rem;
+    font-family: "Raleway";
+  }
+}
+
+.comments-container {
+  padding: 10px 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comments-container h1 {
+  font-size: 1rem;
+}
+
+.comments {
+  display: flex;
+  gap: 7px;
+}
+
+.comment {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 8px 10px 30px 0 rgba(22, 45, 61, 0.2);
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.comment:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  transform: translateY(-10px);
+}
+
+.comment h3 {
+  font-family: "Funnel Sans";
+  color: var(--tertiary-color);
+}
+
+.comment p {
+  font-family: "Raleway";
+}
+
+.add-comment-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 8px 10px 30px 0 rgba(22, 45, 61, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s;
+
+  h3 {
+    font-family: "Inter";
+  }
+}
+
+.add-comment-btn:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.tasks-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.task-header{
+  font-family: 'Raleway';
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.task{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  font-family: 'Inter';
+
+  .task-description{
+    width: 40%;
+  }
+}
+
+aside {
+  width: 23%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: start;
+}
+
+.team-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+
+  h3 {
+    color: var(--tertiary-color);
+    font-family: "Funnel Sans";
+  }
+
+  p {
+    font-family: "Raleway";
+    font-size: 0.9rem;
+  }
+}
+
+.profile:hover {
+  cursor: pointer;
+}
+</style>
