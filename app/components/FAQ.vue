@@ -73,6 +73,7 @@ const questions = [
 
 .faq-holder h2{
   font-size: 2.3rem;
+  text-align: center;
 }
 
 .faq-container{
@@ -147,5 +148,21 @@ details[open] summary b::after{
   font-size: 1.3rem;
   font-weight: bold;
   font-family: 'Oswald';
+}
+
+/* making it responsive */
+
+@media (max-width: 850px){
+  .faq-container{
+    width: 100%;
+  }
+
+  h1{
+    font-size: 2.5rem;
+  }
+
+  h2{
+    font-size: 2rem;
+  }
 }
 </style>

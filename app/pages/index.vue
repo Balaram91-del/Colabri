@@ -1,11 +1,11 @@
 <script setup>
 
 const testimonials = [
-    'https://img.icons8.com/color/48/person-female.png',
-    'https://img.icons8.com/color/48/circled-user-male-skin-type-3--v1.png',
-    'https://img.icons8.com/color/48/checked-user-male-skin-type-7.png',
-    'https://img.icons8.com/color/48/gender-neutral-user.png',
-    'https://img.icons8.com/color/48/checked-user-female.png',
+  'https://img.icons8.com/color/48/person-female.png',
+  'https://img.icons8.com/color/48/circled-user-male-skin-type-3--v1.png',
+  'https://img.icons8.com/color/48/checked-user-male-skin-type-7.png',
+  'https://img.icons8.com/color/48/gender-neutral-user.png',
+  'https://img.icons8.com/color/48/checked-user-female.png',
 ]
 
 const noOfStudentsRegistered = ref(0)
@@ -61,6 +61,8 @@ function startCounters() {
     }
   }, 2)
 }
+
+const showSidebar = ref(false);
 </script>
 
 <template>
@@ -78,7 +80,18 @@ function startCounters() {
       <a href="#cotnact" class="tertiary-btn">CONTACT US</a>
       <nuxt-link to="/loginSignup" class="primary-btn">SIGN IN</nuxt-link>
     </div>
+    <div class="menu-btn">
+      <button @click="showSidebar = !showSidebar"><i class="ri-menu-line"></i></button>
+    </div>
   </nav>
+  <aside v-if="showSidebar">
+    <nuxt-link to="">HOME</nuxt-link>
+    <nuxt-link to="">PROJECTS</nuxt-link>
+    <nuxt-link to="">MENTORS</nuxt-link>
+    <nuxt-link to="">ABOUT US</nuxt-link>
+    <nuxt-link to="">CONTACT US</nuxt-link>
+    <nuxt-link to="">SIGN IN</nuxt-link>
+  </aside>
   <main>
     <section class="hero-section">
       <div class="hero-content">
@@ -113,7 +126,7 @@ function startCounters() {
     </section>
 
     <section class="mouse-scroll-bar-section">
-      <MouseScroll/>
+      <MouseScroll />
     </section>
 
     <section class="join-us-section">
@@ -121,7 +134,8 @@ function startCounters() {
       <div class="wrapper">
         <div class="card">
           <div>
-            <img width="96" height="96" src="https://img.icons8.com/color/96/positive-dynamic.png" alt="positive-dynamic"/>
+            <img width="96" height="96" src="https://img.icons8.com/color/96/positive-dynamic.png"
+              alt="positive-dynamic" />
           </div>
           <h2>Domain-based mentor matching</h2>
           <p>
@@ -130,7 +144,8 @@ function startCounters() {
         </div>
         <div class="card">
           <div>
-            <img width="96" height="96" src="https://img.icons8.com/color/96/positive-dynamic.png" alt="positive-dynamic"/>
+            <img width="96" height="96" src="https://img.icons8.com/color/96/positive-dynamic.png"
+              alt="positive-dynamic" />
           </div>
           <h2>Solution & Explanation</h2>
           <p>
@@ -139,7 +154,8 @@ function startCounters() {
         </div>
         <div class="card">
           <div>
-            <img width="96" height="96" src="https://img.icons8.com/color/96/positive-dynamic.png" alt="positive-dynamic"/>
+            <img width="96" height="96" src="https://img.icons8.com/color/96/positive-dynamic.png"
+              alt="positive-dynamic" />
           </div>
           <h2>Progress Tracking & Analysis</h2>
           <p>
@@ -148,7 +164,8 @@ function startCounters() {
         </div>
         <div class="card">
           <div>
-            <img width="96" height="96" src="https://img.icons8.com/color/96/positive-dynamic.png" alt="positive-dynamic"/>
+            <img width="96" height="96" src="https://img.icons8.com/color/96/positive-dynamic.png"
+              alt="positive-dynamic" />
           </div>
           <h2>Collaborations & Project management</h2>
           <p>
@@ -164,16 +181,8 @@ function startCounters() {
     <section class="testimonial-section">
       <h3>TESTIMONIAL</h3>
       <h1>What Users Say</h1>
-      <UCarousel
-        v-slot="{ item }"
-        loop
-        arrows
-        dots
-        :autoplay="{ delay: 2000 }"
-        :items="testimonials"
-        :ui="{ item: 'basis-1/3' }"
-        class="testimonial-carousel"
-      >
+      <UCarousel v-slot="{ item }" loop arrows dots :autoplay="{ delay: 2000 }" :items="testimonials"
+        :ui="{ item: 'md:basis-1/3 basis-full' }" class="testimonial-carousel">
         <div class="testimonial">
           <img :src="item" width="45" height="45" class="rounded-lg"></img>
           <h2>Balaram Dora</h2>
@@ -186,7 +195,7 @@ function startCounters() {
     </section>
 
     <!-- contact section -->
-     <section class="contact-section" id="cotnact">
+    <section class="contact-section" id="cotnact">
       <h3>CONNECT</h3>
       <h1>Contact With Us</h1>
       <div class="contact-container">
@@ -196,17 +205,20 @@ function startCounters() {
           <h2>Student project - Mentor matching platform</h2>
           <h3>You can either connect with us on email or call us</h3>
           <p>Phone: +917328810701 <br>
-          Email: balaramdora1874@gmail.com</p>
+            Email: balaramdora1874@gmail.com</p>
           <p>FIND US ON</p>
           <div class="contact-links">
-            <a href="https://www.linkedin.com/in/balram-dora-5279742b0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="ri-linkedin-box-fill"></i></a>
+            <a
+              href="https://www.linkedin.com/in/balram-dora-5279742b0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                class="ri-linkedin-box-fill"></i></a>
             <a href="https://github.com/Balaram91-del"><i class="ri-instagram-fill"></i></a>
             <a href="#"><i class="ri-facebook-box-fill"></i></a>
             <a href=""><i class="ri-twitter-x-fill"></i></a>
           </div>
         </div>
         <div class="right-contact-section">
-          <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" class="contact-form">
+          <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data"
+            class="contact-form">
 
             <input type="hidden" name="access_key" value="329f9404-79e1-43c5-aedc-fa33b51198c9">
 
@@ -225,7 +237,7 @@ function startCounters() {
     </section>
 
     <section class="faq-section">
-      <FAQ/>
+      <FAQ />
     </section>
 
     <!-- footer -->
@@ -239,42 +251,37 @@ function startCounters() {
 </template>
 
 <style scoped>
-a{
+a {
   font-family: 'Inter';
   text-decoration: none;
 }
 
-nav{
+nav {
   display: flex;
   width: 100%;
   justify-content: space-around;
   align-items: center;
   padding: 20px 0px;
+  top: 0;
+  position: sticky;
+  background-color: var(--primary-color);
 }
 
-/* .logo h1{
-  color: var(--tertiary-color);
-  font-family: 'KoHo';
-  letter-spacing: 2px;
-  font-weight:1000;
-  font-size: 2.3rem;
-} */
-
-menu{
+menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 40%;
 }
 
-menu a{
+menu a {
   font-family: 'Inter';
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--secondary-color);
 }
 
-menu a::after{
+menu a::after {
   content: '';
   display: block;
   background-color: var(--tertiary-color);
@@ -285,19 +292,23 @@ menu a::after{
   transition: transform 0.2s;
 }
 
-menu a:hover::after{
+menu a:hover::after {
   transform-origin: right;
   transform: scaleX(1);
 }
 
-.side-menu{
+.side-menu {
   width: 20%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-main{
+.menu-btn {
+  display: none;
+}
+
+main {
   width: 100%;
   height: 100%;
   display: flex;
@@ -306,7 +317,7 @@ main{
   justify-content: center;
 }
 
-.hero-section{
+.hero-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -315,7 +326,7 @@ main{
   margin: 90px 0px;
 }
 
-.hero-content{
+.hero-content {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -324,14 +335,14 @@ main{
   text-align: left;
 }
 
-.hero-content h1{
+.hero-content h1 {
   font-family: 'Funnel Sans';
   font-size: 2.5rem;
   margin-bottom: 0;
   letter-spacing: 1px;
 }
 
-.hero-content h3{
+.hero-content h3 {
   font-family: 'Raleway';
   letter-spacing: 0.6px;
   line-height: 1.3;
@@ -339,7 +350,7 @@ main{
   font-size: 1.3rem;
 }
 
-.btn-container{
+.btn-container {
   width: 60%;
   display: flex;
   align-items: center;
@@ -347,23 +358,23 @@ main{
   padding: 15px 0px;
 }
 
-.btn-container a{
+.btn-container a {
   padding: 10px 25px;
 }
 
-.hero-image{
+.hero-image {
   display: flex;
   width: 45%;
   justify-content: center;
   align-items: center;
 }
 
-.hero-image img{
+.hero-image img {
   height: auto;
   width: 90%;
 }
 
-.user-info-section{
+.user-info-section {
   width: 80%;
   display: flex;
   flex-wrap: wrap;
@@ -371,7 +382,7 @@ main{
   justify-content: space-around;
 }
 
-.user-info-section div{
+.user-info-section div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -379,18 +390,18 @@ main{
   width: 300px;
   padding: 20px 0px;
   border-radius: 10px;
-  box-shadow: 8px 10px 30px 0 rgba(22,45,61,0.2);
+  box-shadow: 8px 10px 30px 0 rgba(22, 45, 61, 0.2);
   transition: all 0.3s ease-in-out;
 }
 
-.user-info-section div h2{
+.user-info-section div h2 {
   margin-top: 0;
   color: var(--secondary-color);
   font-family: 'Funnel Sans';
   font-size: 1.3rem;
 }
 
-.user-info-section div p{
+.user-info-section div p {
   margin: 0;
   font-family: 'Raleway';
   color: var(--tertiary-color);
@@ -398,28 +409,28 @@ main{
   font-size: 1.2rem;
 }
 
-.user-info-section div:hover{
+.user-info-section div:hover {
   background-color: var(--secondary-color);
   color: white;
   transform: translateY(-10px);
 }
 
-.user-info-section div:hover h2{
+.user-info-section div:hover h2 {
   color: var(--primary-color);
 }
 
-.user-info-section div:hover p{
+.user-info-section div:hover p {
   color: var(--tertiary-color);
 }
 
-.mouse-scroll-bar-section{
+.mouse-scroll-bar-section {
   width: 90vw;
   display: flex;
   justify-content: end;
   margin: 20px 0px;
 }
 
-.join-us-section{
+.join-us-section {
   width: 80vw;
   display: flex;
   flex-direction: column;
@@ -428,14 +439,14 @@ main{
   justify-content: center;
 }
 
-.join-us-section h1{
+.join-us-section h1 {
   font-family: 'Funnel Sans';
   font-weight: 1200;
   font-size: 2.5rem;
   color: var(--secondary-color);
 }
 
-.wrapper{
+.wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
@@ -443,7 +454,7 @@ main{
   padding: 25px 0px;
 }
 
-.card{
+.card {
   position: relative;
   color: var(--secondary-color);
   padding: 20px 20px;
@@ -454,7 +465,7 @@ main{
   grid-template-rows: subgrid;
   grid-row: span 3;
   corner-shape: square round round round;
-  box-shadow: 9px 10px 30px -2px rgba(0,0,0,0.45);
+  box-shadow: 9px 10px 30px -2px rgba(0, 0, 0, 0.45);
 }
 
 .card img {
@@ -462,14 +473,14 @@ main{
   margin: 0 auto;
 }
 
-.card h2{
+.card h2 {
   margin: 0;
   font-family: 'Funnel Sans';
   font-weight: 900;
   font-size: 1.3rem;
 }
 
-.card p{
+.card p {
   font-family: 'Raleway';
 }
 
@@ -513,15 +524,15 @@ main{
   color: var(--primary-color);
 }
 
-.btn-holder{
+.btn-holder {
   margin: 40px;
 }
 
-.btn-holder a{
+.btn-holder a {
   padding: 10px 25px;
 }
 
-.testimonial-section{
+.testimonial-section {
   width: 80vw;
   display: flex;
   align-items: center;
@@ -530,14 +541,16 @@ main{
   margin: 20px 0px 80px 0px;
 }
 
-.testimonial-section h3, .contact-section h3{
+.testimonial-section h3,
+.contact-section h3 {
   font-family: 'Raleway';
   font-weight: 900;
   color: var(--tertiary-color);
   margin: 10px;
 }
 
-.testimonial-section h1, .contact-section h1{
+.testimonial-section h1,
+.contact-section h1 {
   font-family: 'Funnel Sans';
   font-weight: 1000;
   color: var(--secondary-color);
@@ -545,37 +558,37 @@ main{
   margin-bottom: 20px;
 }
 
-.testimonial-carousel{
+.testimonial-carousel {
   width: 60%;
 }
 
-.testimonial{
+.testimonial {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 20px;
   width: 200px;
-  box-shadow: 9px 10px 30px -2px rgba(0,0,0,0.45);
+  box-shadow: 9px 10px 30px -2px rgba(0, 0, 0, 0.45);
   padding: 20px;
   border-radius: 15px;
 }
 
-.testimonial h2{
+.testimonial h2 {
   font-family: 'Funnel Sans';
   font-size: 1.5rem;
   color: var(--tertiary-color);
   margin: 10px 0px;
 }
 
-.testimonial p{
+.testimonial p {
   text-align: center;
   font-family: 'Raleway';
   font-size: 0.8rem;
   color: var(--secondary-color);
 }
 
-.contact-section{
+.contact-section {
   margin-top: 70px;
   display: flex;
   flex-direction: column;
@@ -585,11 +598,11 @@ main{
   color: var(--secondary-color);
 }
 
-.contact-section h1{
+.contact-section h1 {
   margin-top: 0;
 }
 
-.contact-container{
+.contact-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -598,30 +611,31 @@ main{
   /* height: 50vh; */
 }
 
-.left-contact-section{
+.left-contact-section {
   width: 40%;
   display: flex;
   flex-direction: column;
-  box-shadow: 9px 10px 30px -2px rgba(0,0,0,0.45);
+  box-shadow: 9px 10px 30px -2px rgba(0, 0, 0, 0.45);
   border-radius: 10px;
   padding: 15px;
   margin-right: 20px;
   /* height: 117%; */
 }
 
-.left-contact-section img{
+.left-contact-section img {
   width: 150px;
 }
 
-.contact-logo{
+.contact-logo {
   color: var(--tertiary-color);
   font-family: 'KoHo';
   letter-spacing: 2px;
-  font-weight:1000;
+  font-weight: 1000;
   font-size: 2rem;
 }
 
-.left-contact-section h2, .left-contact-section h3{
+.left-contact-section h2,
+.left-contact-section h3 {
   font-family: 'Raleway';
   color: var(--secondary-color);
   text-align: left;
@@ -629,51 +643,49 @@ main{
   margin: 0px;
 }
 
-.left-contact-section h3{
+.left-contact-section h3 {
   font-weight: 500;
   margin: 10px 0px;
 }
 
-.left-contact-section p{
+.left-contact-section p {
   font-family: 'Raleway';
   margin-bottom: 0;
   font-size: 0.8rem;
 }
 
-.contact-links{
+.contact-links {
   margin-top: 20px;
 }
 
-.left-contact-section a{
+.left-contact-section a {
   text-decoration: none;
   color: var(--text-color);
-  box-shadow: 9px 10px 30px -2px rgba(0,0,0,0.45);
+  box-shadow: 9px 10px 30px -2px rgba(0, 0, 0, 0.45);
   border-radius: 5px;
   padding: 10px;
   font-size: 1.5rem;
   margin: 0 10px;
 }
 
-.left-contact-section a:hover{
+.left-contact-section a:hover {
   cursor: pointer;
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
 
-
-
-.right-contact-section{
+.right-contact-section {
   width: 60%;
   padding: 30px;
   display: flex;
   justify-content: center;
-  box-shadow: 9px 10px 30px -2px rgba(0,0,0,0.45);
+  box-shadow: 9px 10px 30px -2px rgba(0, 0, 0, 0.45);
   margin-left: 20px;
   height: 100%;
   border-radius: 10px;
 }
 
-.contact-form{
+.contact-form {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -681,11 +693,11 @@ main{
   width: 100%;
 }
 
-.contact-form label{
+.contact-form label {
   font-family: 'Raleway';
 }
 
-.contact-inputs{
+.contact-inputs {
   height: 2rem;
   border-radius: 5px;
   width: 100%;
@@ -695,39 +707,22 @@ main{
   border: 1px solid var(--secondary-color);
 }
 
-.contact-inputs:focus{
+.contact-inputs:focus {
   border: none;
   outline: 2px solid var(--tertiary-color);
 }
 
-.contact-form textarea{
+.contact-form textarea {
   height: 30%;
 }
 
-/* .contact-form button{
-  width: 100%;
-  border: none;
-  color: var(--tertiary-color);
-  box-shadow: 9px 10px 30px -2px rgba(0,0,0,0.45);
-  border-radius: 10px;
-  height: 2.5rem;
-  margin-top: 10px;
-  padding: 10px 0px;
-}
-
-.contact-form button:hover{
-  background-color: var(--tertiary-color);
-  color: var(--primary-color);
-  cursor: pointer;
-} */
-
-.contact-form button{
+.contact-form button {
   width: 100%;
   margin-top: 10px;
   padding: 10px 0px;
 }
 
-.faq-section{
+.faq-section {
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -736,12 +731,167 @@ main{
   margin-top: 50px;
 }
 
-footer{
+footer {
   height: 20vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--secondary-color);
+}
+
+/* Making the page Responsive */
+
+@media (max-width: 850px) {
+
+  /* Navbar */
+  nav {
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0px 20px;
+
+    .menu-btn {
+      display: block;
+      color: var(--secondary-color);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    menu {
+      display: none;
+    }
+
+    .side-menu {
+      display: none;
+    }
+  }
+
+  /* Collapsable sidebar */
+  aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 15px;
+    position: fixed;
+    top: 20;
+    right: 0;
+    z-index: 10;
+    width: 50%;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 1.35rem;
+    corner-shape: round square square square;
+    border-radius: 20px;
+
+    a:hover {
+      color: var(--tertiary-color);
+    }
+  }
+
+  /* Hero Section */
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+
+    .hero-image {
+      align-self: flex-start;
+      order: -1;
+      width: 110%;
+
+      img {
+        width: 95%;
+      }
+    }
+
+    .hero-content {
+      width: 100%;
+
+      .btn-container {
+        width: 80%;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  /* scroll bar */
+  .mouse-scroll-bar-section {
+    display: none;
+  }
+
+  /* info section */
+  .user-info-section {
+    gap: 20px;
+
+    div {
+      width: 350px;
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+      }
+    }
+
+  }
+
+  /* join us section  */
+  .card {
+    padding: 60px 0px;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+    }
+  }
+
+  /* testimonial section  */
+  .testimonial-section{
+    width: 80%;
+  }
+  
+  .testimonial-carousel{
+    width: 80%;
+  }
+
+  /* contact section  */
+  .contact-section {
+    width: 80%;
+
+    .contact-container {
+      flex-direction: column;
+      gap: 25px;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+
+      .left-contact-section {
+        width: 100%;
+        margin: 0;
+      }
+
+      .right-contact-section {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+
+  /* faq section  */
+  .faq-section {
+    width: 90%;
+
+    h2 {
+      text-align: center;
+    }
+  }
 }
 </style>

@@ -28,5 +28,6 @@ useHead({
   margin: 0;
   background-color: var(--primary-color);
   color: var(--secondary-color);
+  position: relative;
 }
 </style>
