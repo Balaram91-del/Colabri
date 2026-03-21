@@ -178,6 +178,89 @@ const showSidebar = ref(false);
       </div>
     </section>
 
+    <section class="mentors-section">
+      <h3>MENTORS</h3>
+      <h1>Highest Rated Mentors</h1>
+      <div class="container">
+        <div class="box mentor-1">
+          <div class="profile">
+            <div class="avatar">
+              <img
+              width="60"
+              height="60"
+              src="https://img.icons8.com/color/96/user.png"
+              alt="user"
+            />
+            </div>
+            <div class="info">
+              <h4>Dr. Bojack Horseman</h4>
+              <p>Prof. Data Science</p>
+            </div>
+          </div>
+          <div class="about">
+            <p>Lorem ipsum dolor amet, adipisicing elit. Velit, molestias facere! Vero officia quis, quisquam excepturi nesciunt est !</p>
+          </div>
+        </div>
+        <div class="box mentor-2">
+          <div class="profile">
+            <div class="avatar">
+              <img
+              width="60"
+              height="60"
+              src="https://img.icons8.com/color/96/user.png"
+              alt="user"
+            />
+            </div>
+            <div class="info">
+              <h4>Dr. Bojack Horseman</h4>
+              <p>Prof. Data Science</p>
+            </div>
+          </div>
+          <div class="about">
+            <p>Lorem ipsum , consectetur adipisicing elit. Velit, molestias facere! Vero officia quis, quisquam excepturi nesciunt est !</p>
+          </div>
+        </div>
+        <div class="box mentor-3">
+          <div class="profile">
+            <div class="avatar">
+              <img
+              width="60"
+              height="60"
+              src="https://img.icons8.com/color/96/user.png"
+              alt="user"
+            />
+            </div>
+            <div class="info">
+              <h4>Dr. Bojack Horseman</h4>
+              <p>Prof. Data Science</p>
+            </div>
+          </div>
+          <div class="about">
+            <p>Lorem ipsum dolor amet, consectetur adipisicing elit. Velit, molestias facere! Vero officia quis, quisquam excepturi nesciunt est ! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem quas doloribus debitis laborum exercitationem, quaerat ex. Doloribus distinctio, corporis dolores, ad beatae minus, quos aperiam nobis voluptas iure ea deleniti.</p>
+          </div>
+        </div>
+        <div class="box mentor-4">
+          <div class="profile">
+            <div class="avatar">
+              <img
+              width="60"
+              height="60"
+              src="https://img.icons8.com/color/96/user.png"
+              alt="user"
+            />
+            </div>
+            <div class="info">
+              <h4>Dr. Bojack Horseman</h4>
+              <p>Prof. Data Science</p>
+            </div>
+          </div>
+          <div class="about">
+            <p>Lorem ipsum dolor amet, consectetur adipisicing elit. Velit, molestias facere! Vero officia quis, quisquam excepturi nesciunt est !</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="testimonial-section">
       <h3>TESTIMONIAL</h3>
       <h1>What Users Say</h1>
@@ -262,8 +345,6 @@ nav {
   justify-content: space-around;
   align-items: center;
   padding: 20px 0px;
-  top: 0;
-  position: sticky;
   background-color: var(--primary-color);
 }
 
@@ -532,6 +613,80 @@ main {
   padding: 10px 25px;
 }
 
+.mentors-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+
+  .container{
+    width: 90%;
+    display: grid;
+    grid-template-rows: 25vh 25vh;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+
+    .box{
+      corner-shape: squircle;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding: 10px;
+      color: var(--primary-color);
+      gap: 15px;
+
+      .profile{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        h4{
+          font-family: 'Funnel Sans';
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
+
+        p{
+          font-family: 'Raleway';
+          /* font-size: 0.8rem; */
+        }
+      }
+
+      .about{
+        font-family: 'Inter';
+        font-weight: 300;
+      }
+
+    }
+
+    .mentor-1{
+      grid-row: 1/2;
+      grid-column: 1/2;
+      background-color: #896C6C;
+    }
+
+    .mentor-2{
+      grid-column: 2/3;
+      grid-row: 1/2;
+      background-color: #5D688A;
+    }
+
+    .mentor-3{
+      grid-column: 3/4;
+      grid-row: 1/3;
+      background-color: #6E5577;
+    }
+
+    .mentor-4{
+      grid-column: 1/3;
+      grid-row: 2/3;
+      background-color: #1D3461;
+    }
+  }
+}
+
 .testimonial-section {
   width: 80vw;
   display: flex;
@@ -542,7 +697,8 @@ main {
 }
 
 .testimonial-section h3,
-.contact-section h3 {
+.contact-section h3,
+.mentors-section h3 {
   font-family: 'Raleway';
   font-weight: 900;
   color: var(--tertiary-color);
@@ -550,7 +706,8 @@ main {
 }
 
 .testimonial-section h1,
-.contact-section h1 {
+.contact-section h1,
+.mentors-section h1 {
   font-family: 'Funnel Sans';
   font-weight: 1000;
   color: var(--secondary-color);
@@ -749,6 +906,8 @@ footer {
     justify-content: space-between;
     box-sizing: border-box;
     padding: 0px 20px;
+    top: 0;
+    position: sticky;
 
     .menu-btn {
       display: block;
@@ -853,12 +1012,24 @@ footer {
     }
   }
 
+  /* //Mentor section  */
+  .mentors-section{
+    h1{
+      text-align: center;
+    }
+    .container{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
   /* testimonial section  */
-  .testimonial-section{
+  .testimonial-section {
     width: 80%;
   }
-  
-  .testimonial-carousel{
+
+  .testimonial-carousel {
     width: 80%;
   }
 

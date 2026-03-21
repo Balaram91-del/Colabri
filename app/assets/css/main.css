@@ -43,6 +43,7 @@ body {
   border: none;
   padding: 5px 20px;
   font-family: 'Inter';
+  /* box-shadow: 0 0 0.8em 0.1em var(--secondary-color); */
 }
 
 .primary-btn:hover {
@@ -59,6 +60,7 @@ body {
   border: none;
   padding: 5px 20px;
   font-family: 'Inter';
+  /* box-shadow: 0 0 0.5em 0.1em var(--tertiary-color); */
 }
 
 .secondary-btn:hover {
