@@ -85,15 +85,15 @@ const showSidebar = ref(false);
     </div>
   </nav>
   <aside v-if="showSidebar">
-    <nuxt-link to="">HOME</nuxt-link>
-    <nuxt-link to="">PROJECTS</nuxt-link>
-    <nuxt-link to="">MENTORS</nuxt-link>
-    <nuxt-link to="">ABOUT US</nuxt-link>
-    <nuxt-link to="">CONTACT US</nuxt-link>
-    <nuxt-link to="">SIGN IN</nuxt-link>
+    <a href="#home">HOME</a>
+    <nuxt-link to="/dashboard/allProjects">PROJECTS</nuxt-link>
+    <nuxt-link to="/dashboard/mentors">MENTORS</nuxt-link>
+    <nuxt-link to="/about">ABOUT US</nuxt-link>
+    <a href="#cotnact">CONTACT US</a>
+    <nuxt-link to="/loginSignup">SIGN IN</nuxt-link>
   </aside>
   <main>
-    <section class="hero-section">
+    <section class="hero-section" id="home">
       <div class="hero-content">
         <h1>Build Better <span>Projects</span> with the Right <span>Mentors</span></h1>
         <h3>
@@ -650,7 +650,6 @@ main {
 
         p{
           font-family: 'Raleway';
-          /* font-size: 0.8rem; */
         }
       }
 
@@ -765,7 +764,6 @@ main {
   align-items: center;
   width: 100%;
   margin-top: 40px;
-  /* height: 50vh; */
 }
 
 .left-contact-section {
@@ -776,7 +774,6 @@ main {
   border-radius: 10px;
   padding: 15px;
   margin-right: 20px;
-  /* height: 117%; */
 }
 
 .left-contact-section img {
