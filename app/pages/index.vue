@@ -174,7 +174,7 @@ const showSidebar = ref(false);
         </div>
       </div>
       <div class="btn-holder">
-        <nuxt-link to="" class="secondary-btn">Get Started For Free</nuxt-link>
+        <nuxt-link to="/loginSignup" class="secondary-btn">Get Started For Free</nuxt-link>
       </div>
     </section>
 

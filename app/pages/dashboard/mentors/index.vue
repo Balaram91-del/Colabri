@@ -1,3 +1,10 @@
+<script setup>
+const router = useRouter();
+function takeToMentorProfile() {
+  router.push('/dashboard/mentors/profile');
+}
+</script>
+
 <template>
   <main>
     <div class="content-holder">
@@ -10,7 +17,7 @@
         </div>
       </div>
       <div class="profiles-holder">
-        <div class="profile">
+        <div class="profile" @click="takeToMentorProfile">
           <div class="avatar-holder">
             <img
               width="96"

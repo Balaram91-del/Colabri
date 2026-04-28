@@ -1,30 +1,53 @@
 <script setup lang="ts">
-import { email, z } from "zod";
+import { z } from "zod";
 import type { FormSubmitEvent } from "@nuxt/ui";
+
+const supabase = useSupabaseClient();
+const router = useRouter();
 
 const isSubmitting = ref(false);
 
+// ✅ Proper state (NO undefined)
 const formState = reactive({
-  email: undefined,
-  password: undefined,
+  email: "",
+  password: "",
 });
 
+// ✅ Correct Zod schema
 const formSchema = z.object({
-  email: z.email("Must be a valid email"),
+  email: z.string().email("Must be a valid email"),
+
   password: z
-    .string("Please enter password")
-    .min(8, "must be atleast 8 characters"),
+    .string()
+    .min(8, "Must be at least 8 characters"),
 });
 
 type Schema = z.output<typeof formSchema>;
 
+// ✅ Login function
 async function formSubmission(event: FormSubmitEvent<Schema>) {
+  console.log("LOGIN SUBMITTED"); // debug
+
   isSubmitting.value = true;
+
   try {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: formState.email,
+      password: formState.password,
+    });
+
+    if (error) throw error;
+
+    console.log("Login success:", data);
+
+    // ✅ Redirect after login
+    router.push("/dashboard");
+
+  } catch (err: any) {
+    console.error("Login error:", err.message);
+    alert(err.message);
   } finally {
     isSubmitting.value = false;
-    console.log(event);
   }
 }
 </script>
@@ -38,7 +61,7 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
         src="https://img.icons8.com/arcade/64/phone.png"
         alt="phone"
       />
-      Continue with Phone No.
+      Continue with OTP
     </button>
     <USeparator label="or" class="w-7/10"></USeparator>
   </div>
@@ -53,7 +76,7 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
       label="Email"
       size="lg"
       required
-      class="w-full"
+      class="w-full form-field"
       color="primary"
     >
       <UInput
@@ -72,7 +95,7 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
       label="Password"
       size="lg"
       required
-      class="w-full"
+      class="w-full form-field"
     >
       <UInput
         class="w-full"
@@ -153,5 +176,19 @@ p a {
   background-color: transparent;
   border: 2px solid var(--secondary-color);
   color: var(--secondary-color);
+}
+
+@media (max-width: 850px) {
+  .btn-holder{
+    width: 80%;
+  }
+
+  form{
+    width: 80%;
+
+    .form-field{
+      font-size: 1.2rem;
+    }
+  }
 }
 </style>

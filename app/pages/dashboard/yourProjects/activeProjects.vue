@@ -1,8 +1,89 @@
+<script setup>
+const store = useProjectInfo();
+const router = useRouter();
+
+function takeToProjectPage(projectId, projectTitle, ProjectDescription) {
+  store.setProjectData(projectId, projectTitle, ProjectDescription);
+  router.push("/dashboard/yourProjects/project");
+}
+
+const client = useSupabaseClient();
+
+const user = useSupabaseUser();
+const myProjects = ref([]);
+
+async function fetchMyProjects() {
+  // get user directly from the client instead
+  const {
+    data: { user },
+  } = await client.auth.getUser();
+
+  if (!user?.id) {
+    console.error("No user found");
+    return;
+  }
+
+  try {
+    const { data, error } = await client
+      .from("project_members")
+      .select(
+        `
+        *,
+        projects (*)
+      `,
+      )
+      .eq("member_id", user.id);
+
+    if (error) throw error;
+
+    myProjects.value = data;
+    console.log("My projects loaded:", data);
+  } catch (error) {
+    console.error("Failed to fetch my projects:", error.message);
+  }
+}
+
+onMounted(() => {
+  fetchMyProjects();
+});
+</script>
+
 <template>
   <main>
     <h1>Your Active Projects</h1>
     <div class="active-projects">
-      <nuxtLink class="project" to="/dashboard/yourProjects/Colabri">
+      <NuxtLink
+        v-for="item in myProjects"
+        :key="item.id"
+        class="project"
+        :to="`/dashboard/yourProjects/${item.projects.id}`"
+      >
+        <h2 class="project-title">
+          <span>Project Title: </span> {{ item.projects.title }}
+        </h2>
+
+        <p class="project-description">
+          <span>Project Description: </span> {{ item.projects.description }}
+        </p>
+
+        <p class="project-description">
+          <span>Project Domain: </span> {{ item.projects.domain }}
+        </p>
+      </NuxtLink>
+      <!-- <nuxtLink class="project">
+        <h2 class="project-title">
+          <span>01. Project Title: </span> Studen project - mentor match hub
+          with collaborations.
+        </h2>
+        <p class="project-description">
+          <span>Project Description: </span> This project aims to build a
+          platform that will help students that need guidence and mentorship
+          with their Projects to be able to find and conntect with domain
+          specific and experienced mentors with features like project management
+          and real time collaborations.
+        </p>
+      </nuxtLink> -->
+      <!-- <nuxtLink class="project">
         <h2 class="project-title">
           <span>01. Project Title: </span> Studen project - mentor match hub
           with collaborations.
@@ -27,33 +108,7 @@
           specific and experienced mentors with features like project management
           and real time collaborations.
         </p>
-      </nuxtLink>
-      <nuxtLink class="project">
-        <h2 class="project-title">
-          <span>01. Project Title: </span> Studen project - mentor match hub
-          with collaborations.
-        </h2>
-        <p class="project-description">
-          <span>Project Description: </span> This project aims to build a
-          platform that will help students that need guidence and mentorship
-          with their Projects to be able to find and conntect with domain
-          specific and experienced mentors with features like project management
-          and real time collaborations.
-        </p>
-      </nuxtLink>
-      <nuxtLink class="project">
-        <h2 class="project-title">
-          <span>01. Project Title: </span> Studen project - mentor match hub
-          with collaborations.
-        </h2>
-        <p class="project-description">
-          <span>Project Description: </span> This project aims to build a
-          platform that will help students that need guidence and mentorship
-          with their Projects to be able to find and conntect with domain
-          specific and experienced mentors with features like project management
-          and real time collaborations.
-        </p>
-      </nuxtLink>
+      </nuxtLink> -->
     </div>
   </main>
 </template>

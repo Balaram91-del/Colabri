@@ -1,3 +1,35 @@
+<script setup>
+const isCreateTaskFrom = ref(false);
+const isCreateComment = ref(false);
+
+const client = useSupabaseClient();
+const route = useRoute();
+const tasks = ref([]);
+
+async function fetchTasks() {
+  const projectId = route.params.id; // grabs the last segment from the URL
+
+  try {
+    const { data, error } = await client
+      .from("tasks")
+      .select("*")
+      .eq("project_id", projectId);
+
+    if (error) throw error;
+
+    tasks.value = data;
+    console.log("Tasks loaded:", data);
+
+  } catch (error) {
+    console.error("Failed to fetch tasks:", error.message);
+  }
+}
+
+onMounted(() => {
+  fetchTasks();
+});
+</script>
+
 <template>
   <main>
     <div class="content-container">
@@ -11,13 +43,13 @@
       </div>
       <div class="project-info-container">
         <h2>Deadline: <span>1st April 2025</span></h2>
-        <h2>Total Commits: <span>10</span></h2>
+        <!-- <h2>Total Commits: <span>10</span></h2>
         <h2>Commits by Each Individual: </h2>
         <div class="commits-by-individual-container">
           <p>Bojack: <span>5</span></p>
           <p>Bojack: <span>3</span></p>
           <p>Bojack: <span>2</span></p>
-        </div>
+        </div> -->
       </div>
       <div class="comments-container">
         <h1>New Comments</h1>
@@ -73,7 +105,7 @@
               <i class="ri-arrow-right-s-fill"></i>
             </div>
           </div>
-          <button class="add-comment-btn">
+          <button class="add-comment-btn" @click="isCreateComment =! isCreateComment">
             <img
               width="35"
               height="35"
@@ -83,6 +115,38 @@
             <h3>Add Comment</h3>
           </button>
         </div>
+        <form
+          v-if="isCreateComment"
+          @submit.prevent=""
+          class="flex flex-col gap-4 p-6 bg-white rounded-xl shadow-md max-w-lg project-creation-form"
+        >
+          <h2 class="text-xl font-bold text-gray-800">Add New Comment</h2>
+
+          <!-- Title -->
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-600">Comment</label>
+            <input
+              type="text"
+              placeholder="Enter project title"
+              class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg transition-colors duration-200"
+          >
+            Create
+          </button>
+          <button
+            class="tertiary-btn"
+            @click="isCreateComment = !isCreateComment"
+          >
+            Cancel
+          </button>
+        </form>
+
       </div>
       <div class="tasks-container">
         <h1>Your Tasks</h1>
@@ -159,6 +223,75 @@
             <p>High</p>
           </div>
         </div>
+        <form
+          v-if="isCreateTaskFrom"
+          @submit.prevent=""
+          class="flex flex-col gap-4 p-6 bg-white rounded-xl shadow-md max-w-lg project-creation-form"
+        >
+          <h2 class="text-xl font-bold text-gray-800">Create New Task</h2>
+
+          <!-- Title -->
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-600">Task Title</label>
+            <input
+              type="text"
+              placeholder="Enter project title"
+              class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+          </div>
+
+          <!-- Description -->
+          <!-- <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-600">Description</label>
+            <textarea
+              placeholder="Describe your project..."
+              rows="4"
+              class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 resize-none"
+            />
+          </div> -->
+
+          <!-- Interests -->
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-600">Deadline</label>
+            <input
+              type="text"
+              placeholder="e.g. Fri Feb 26"
+              class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+            <!-- <p class="text-xs text-gray-400">Separate domains with commas</p> -->
+          </div>
+
+          <!-- tech stack -->
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-600">Priority</label>
+            <input
+              type="text"
+              placeholder="e.g. High, medium, low"
+              class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+            <!-- <p class="text-xs text-gray-400">Separate tools/techonologies with commas</p> -->
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg transition-colors duration-200"
+          >
+            Create
+          </button>
+          <button
+            class="tertiary-btn"
+            @click="isCreateTaskFrom = !isCreateTaskFrom"
+          >
+            Cancel
+          </button>
+        </form>
+        <button
+          class="primary-btn"
+          @click="isCreateTaskFrom = !isCreateTaskFrom"
+        >
+          add task
+        </button>
       </div>
     </div>
     <aside>
@@ -263,19 +396,19 @@ h1 {
   }
 }
 
-.project-info-container{
+.project-info-container {
   display: flex;
   flex-direction: column;
-  h2{
+  h2 {
     font-weight: 600;
   }
 
-  .commits-by-individual-container{
+  .commits-by-individual-container {
     display: flex;
     gap: 20px;
     margin-top: 5px;
-    p{
-      font-family: 'Raleway';
+    p {
+      font-family: "Raleway";
       font-weight: 500;
       box-shadow: 8px 10px 30px 0 rgba(22, 45, 61, 0.2);
       padding: 5px 10px;
@@ -283,7 +416,7 @@ h1 {
       border-radius: 10px;
     }
 
-    p:hover{
+    p:hover {
       background-color: var(--secondary-color);
       color: var(--primary-color);
     }
@@ -355,31 +488,31 @@ h1 {
   color: white;
 }
 
-.tasks-container{
+.tasks-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 10px;
 }
 
-.task-header{
-  font-family: 'Raleway';
+.task-header {
+  font-family: "Raleway";
   font-weight: 600;
   margin-bottom: 10px;
   box-shadow: none !important;
 }
 
-.task{
+.task {
   display: flex;
   width: 100%;
   justify-content: space-around;
-  font-family: 'Inter';
+  font-family: "Inter";
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   padding: 7px 0px;
   corner-shape: squircle;
   border-radius: 5px;
 
-  .task-description{
+  .task-description {
     width: 40%;
   }
 }

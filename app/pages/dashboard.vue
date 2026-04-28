@@ -1,11 +1,14 @@
 <script setup>
 const isSidebarOpen = ref(true);
 
+
 onMounted(() => {
   isSidebarOpen.value = localStorage.getItem("isSidebarOpen") === "true";
 });
 
-const route = useRoute()
+const route = useRoute();
+const router = useRouter();
+const supabase = useSupabaseClient();
 const isFullScreenRoute = computed(() => 
   route.path.endsWith('test')
 )
@@ -15,6 +18,18 @@ function sidebarToggle() {
 
   localStorage.setItem("isSidebarOpen", isSidebarOpen.value);
 }
+
+async function signOut() {
+  Object.keys(localStorage)
+    .filter(key => key.startsWith("sb-"))
+    .forEach(key => localStorage.removeItem(key));
+
+  await navigateTo("/loginSignup", { replace: true });
+}
+
+const store = useUserInfo();
+
+const userName = store.userData.userName;
 </script>
 
 <template>
@@ -69,19 +84,12 @@ function sidebarToggle() {
             <i class="ri-customer-service-2-line"></i>
             Support
           </router-link>
-          <button>
+          <button @click="signOut">
             <i class="ri-login-circle-line"></i>
             Log Out
           </button>
         </div>
       </div>
-      <!-- <div class="promo-container">
-        <h2>Upgrade to Ultimate</h2>
-        <p>Gain Access to all the Tests</p>
-        <nuxt-link to="/purchase" class="secondary-btn upgrade-btn"
-          >Upgrade</nuxt-link
-        >
-      </div> -->
     </aside>
     <div class="main-navbar-container">
       <nav v-if="!isFullScreenRoute">
@@ -95,7 +103,7 @@ function sidebarToggle() {
           <!-- <UColorModeButton /> -->
           <UUser
             class="custom-user text-green"
-            name="John Doe"
+            :name=userName
             description="Software Engineer"
             :avatar="{
               src: 'https://img.icons8.com/color/48/checked-user-male-skin-type-7.png',
@@ -265,6 +273,11 @@ function sidebarToggle() {
 } */
 
 .btn-holder a:hover {
+  background-color: rgba(142, 154, 206, 0.05);
+  color: var(--tertiary-color);
+}
+
+.btn-holder button:hover{
   background-color: rgba(142, 154, 206, 0.05);
   color: var(--tertiary-color);
 }

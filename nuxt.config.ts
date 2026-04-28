@@ -6,7 +6,10 @@ export default defineNuxtConfig({
     colorMode: false
   },
   modules: [
-    '@nuxt/fonts','@nuxt/ui'
+    '@nuxt/fonts','@nuxt/ui','@nuxtjs/supabase','@pinia/nuxt'
   ],
+  supabase: {
+    redirect: false
+  },
   css: ["~/assets/css/main.css"],
 })

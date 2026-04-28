@@ -1,36 +1,122 @@
+<script setup>
+definePageMeta({
+  middleware: ["auth"],
+});
+
+const store = useUserInfo();
+
+const userName = store.userData.userName;
+
+const projectCreationForm = ref(false);
+
+const projectForm = reactive({
+  title: "",
+  description: "",
+  interests: "",
+  techStack: ""
+});
+
+const user = useSupabaseUser();
+const client = useSupabaseClient();
+
+async function createProject() {
+  try {
+    const { data, error } = await client
+      .from("projects")
+      .insert({
+        title: projectForm.title,
+        description: projectForm.description,
+        domain: projectForm.interests,      // comma separated string, stored as-is
+        creater_id: user.value.id,          // logged in user's uuid
+        status: "active",                   // default status, change to your enum value
+      })
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    console.log("Project created:", data);
+    projectCreationForm.value = false;      // close the form after success
+
+  } catch (error) {
+    console.error("Failed to create project:", error.message);
+  }
+}
+
+</script>
+
 <template>
   <main>
     <div class="content-container">
-      <div class="project-container">
-        <h1>Hello!, Balaram</h1>
+      <div class="project-creation-form-container" v-if="projectCreationForm">
+        <form
+          @submit.prevent="createProject"
+          class="flex flex-col gap-4 p-6 bg-white rounded-xl shadow-md max-w-lg project-creation-form"
+        >
+          <h2 class="text-xl font-bold text-gray-800">Create New Project</h2>
+
+          <!-- Title -->
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-600"
+              >Project Title</label
+            >
+            <input
+              v-model="projectForm.title"
+              type="text"
+              placeholder="Enter project title"
+              class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+          </div>
+
+          <!-- Description -->
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-600">Description</label>
+            <textarea
+              v-model="projectForm.description"
+              placeholder="Describe your project..."
+              rows="4"
+              class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 resize-none"
+            />
+          </div>
+
+          <!-- Interests -->
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-600">Domains</label>
+            <input
+              v-model="projectForm.interests"
+              type="text"
+              placeholder="e.g. AI, Web Dev, Design"
+              class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+            <p class="text-xs text-gray-400">Separate domains with commas</p>
+          </div>
+
+          <!-- tech stack -->
+           <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-600">Tech Stack</label>
+            <input
+              v-model="projectForm.techStack"
+              type="text"
+              placeholder="e.g. AI, Web Dev, Design"
+              class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+            <p class="text-xs text-gray-400">Separate tools/techonologies with commas</p>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg transition-colors duration-200"
+          >
+            Create
+          </button>
+          <button class="tertiary-btn" @click="projectCreationForm = !projectCreationForm">Cancel</button>
+        </form>
+      </div>
+      <div class="project-container" v-if="!projectCreationForm">
+        <h1>Hello!, {{ userName }}</h1>
         <p class="agenda">Here is your agenda for today</p>
         <div class="active-projects">
-          <!-- <button class="project">
-            <h2 class="project-title">
-              <span>01. Project Title: </span> Studen project - mentor match hub
-              with collaborations.
-            </h2>
-            <p class="project-description">
-              <span>Project Description: </span> This project aims to build a
-              platform that will help students that need guidence and mentorship
-              with their Projects to be able to find and conntect with domain
-              specific and experienced mentors with features like project
-              management and real time collaborations.
-            </p>
-          </button>
-          <button class="project">
-            <h2 class="project-title">
-              <span>01. Project Title: </span> Studen project - mentor match hub
-              with collaborations.
-            </h2>
-            <p class="project-description">
-              <span>Project Description: </span> This project aims to build a
-              platform that will help students that need guidence and mentorship
-              with their Projects to be able to find and conntect with domain
-              specific and experienced mentors with features like project
-              management and real time collaborations.
-            </p>
-          </button> -->
           <nuxtLink to="" class="project">
             <h2 class="project-title">Projects Completed</h2>
             <p class="project-description">
@@ -53,26 +139,6 @@
       </div>
       <div class="task-container">
         <h1>Urgent Tasks:</h1>
-        <!-- <div class="radio-btn-holder">
-          <div class="radio-inputs">
-            <label class="radio">
-              <input type="radio" name="radio" />
-              <span class="name">Today</span>
-            </label>
-            <label class="radio">
-              <input type="radio" name="radio" />
-              <span class="name">This week</span>
-            </label>
-            <label class="radio">
-              <input type="radio" name="radio" />
-              <span class="name">This Month</span>
-            </label>
-            <label class="radio">
-              <input type="radio" name="radio" />
-              <span class="name">Total</span>
-            </label>
-          </div>
-        </div> -->
         <div class="tasks-holder">
           <div class="task">
             <label for="" class="task-desciption">
@@ -101,14 +167,25 @@
               <span>Today</span>
             </p>
           </div>
-
-          
         </div>
       </div>
     </div>
     <aside>
       <h1>Your Calender</h1>
       <UCalendar color="neutral" />
+
+      <div
+        class="create-project-container"
+        @click="projectCreationForm = !projectCreationForm"
+      >
+        <img
+          width="35"
+          height="35"
+          src="https://img.icons8.com/arcade/64/add.png"
+          alt="add"
+        />
+        <h2 class="project-title">Create a project</h2>
+      </div>
     </aside>
   </main>
 </template>
@@ -137,6 +214,29 @@ aside {
   padding: 10px 10px;
   align-self: flex-start;
   /* position: relative; */
+
+  .create-project-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 8px 10px 30px 0 rgba(22, 45, 61, 0.2);
+    padding: 20px 0px;
+    border-radius: 10px;
+    transition: all 0.3s;
+
+    h2 {
+      font-family: "Funnel Sans";
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+
+  .create-project-container:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    transform: translateY(-20px);
+  }
 }
 
 .content-container {
@@ -146,6 +246,15 @@ aside {
   display: flex;
   flex-direction: column;
   gap: 50px;
+}
+
+.project-creation-form-container {
+  height: 100%;
+  width: 100%;
+
+  .project-creation-form{
+    width: 100%;
+  }
 }
 
 .project-container {

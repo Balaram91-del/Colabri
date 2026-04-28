@@ -38,7 +38,6 @@ main {
   width: 60%;
   height: auto;
   border-radius: 20px;
-  /* background-color: aliceblue; */
   z-index: 30;
   min-height: 70%;
 }
@@ -46,14 +45,13 @@ main {
 .login-from {
   width: 40%;
   height: 100%;
-  /* background-color: aliceblue; */
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 60%;
-  box-shadow: 9px 10px 30px -2px rgba(0,0,0,0.45);
+  box-shadow: 9px 10px 30px -2px rgba(0, 0, 0, 0.45);
 }
 
 .login-signup-holder {
@@ -90,11 +88,11 @@ h3 {
   color: var(--primary-color);
 }
 
-.image-container h3{
+.image-container h3 {
   font-size: 1.5rem;
 }
 
-.logo{
+.logo {
   font-family: 'KoHo';
   font-size: 2rem;
 }
@@ -117,5 +115,33 @@ h3 {
   color: var(--secondary-color);
   font-size: 2rem;
   cursor: pointer;
+}
+
+/* making the page responsive */
+
+@media (max-width: 850px) {
+  .btn-container{
+    width: 90%;
+  }
+
+  .login-container {
+    width: 90%;
+
+    .login-from {
+      width: 100%;
+
+      .login-signup-holder{
+        width: 90%;
+      }
+    }
+
+    .image-container {
+      display: none;
+      width: 0;
+    }
+  }
+
+
+
 }
 </style>

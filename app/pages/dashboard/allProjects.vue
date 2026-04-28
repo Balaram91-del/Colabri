@@ -1,11 +1,61 @@
+<script setup>
+const client = useSupabaseClient();
+const projects = ref([]);
+
+const isLoading = ref(false);
+
+async function fetchProjects() {
+  try {
+    isLoading.value = true;
+    const { data, error } = await client
+      .from("projects")
+      .select("*")
+      .eq("status", "active");
+
+    if (error) throw error;
+
+    projects.value = data;
+    console.log("Projects loaded:", data);
+    isLoading.value = false;
+
+  } catch (error) {
+    console.error("Failed to fetch projects:", error.message);
+  }
+}
+
+onMounted(() => {
+  fetchProjects();
+});
+
+function sendRequest() {
+  alert("Request has been sent successfully, you will be notified shortly.");
+}
+</script>
+
 <template>
   <main>
     <div class="content-container">
       <header>
         <h1 class="logo">All Current Projects</h1>
       </header>
+
+      <div class="loader-container" v-if="isLoading">
+        <Loader/>
+      </div>
       
-      <nuxtLink class="project" to="">
+      <nuxtLink class="project" to="" v-for="project in projects" :key="project.id">
+        <h2 class="project-title">
+          <span>01. Project Title: </span> {{project.title}}
+        </h2>
+        <p class="project-description">
+          <span>Project Description: </span> {{project.description}}
+        </p>
+        <p class="project-description">
+          <span>Project Domain: </span> {{ project.domain }}
+        </p>
+        <button @click="sendRequest" class="secondary-btn">Send request to join</button>
+      </nuxtLink>
+      <!-- <nuxtLink class="project" to="">
         <h2 class="project-title">
           <span>01. Project Title: </span> Studen project - mentor match hub
           with collaborations.
@@ -30,20 +80,7 @@
           specific and experienced mentors with features like project management
           and real time collaborations.
         </p>
-      </nuxtLink>
-      <nuxtLink class="project" to="">
-        <h2 class="project-title">
-          <span>01. Project Title: </span> Studen project - mentor match hub
-          with collaborations.
-        </h2>
-        <p class="project-description">
-          <span>Project Description: </span> This project aims to build a
-          platform that will help students that need guidence and mentorship
-          with their Projects to be able to find and conntect with domain
-          specific and experienced mentors with features like project management
-          and real time collaborations.
-        </p>
-      </nuxtLink>
+      </nuxtLink> -->
     </div>
     <aside>
       <h1>Filter by category:</h1>

@@ -2,45 +2,68 @@
 import { z } from "zod";
 import type { FormSubmitEvent } from "@nuxt/ui";
 
-const items = ref(["+91", "+62", "+1", "+69"]);
-const value = ref("+91");
+const supabase = useSupabaseClient();
+const router = useRouter();
 
 const isSubmitting = ref(false);
 
+// ✅ Zod Schema (MATCHES FORM)
 const formSchema = z.object({
-  fullName: z
-    .string("Please enter your Name")
-    .min(4, "Name must be more than 4 characters"),
-  email: z.email("Must be a valid email"),
-  phoneNumber: z
+  fullName: z.string().min(4, "Name must be more than 4 characters"),
+
+  email: z.string().email("Must be a valid email"),
+
+  password: z
     .string()
-    .transform((val) => val.replace(/\D/g, ""))
-    .refine((val) => val.length == 10, {
-      message: "Invalid phone number",
-    }),
+    .min(6, "Password must be at least 6 characters"),
 });
 
+// ✅ Form State
 const formState = reactive({
-  fullName: undefined,
-  email: undefined,
-  phoneNumber: undefined,
+  fullName: "",
+  email: "",
+  password: "",
 });
 
 type Schema = z.output<typeof formSchema>;
 
+// ✅ Submit Function
 async function formSubmission(event: FormSubmitEvent<Schema>) {
+  console.log("FORM SUBMITTED"); // debug
+
   isSubmitting.value = true;
+
   try {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    const { data, error } = await supabase.auth.signUp({
+      email: formState.email,
+      password: formState.password,
+      options: {
+        data: {
+          fullName: formState.fullName,
+        },
+        emailRedirectTo: "http://localhost:3000/login",
+      },
+    });
+
+    if (error) throw error;
+
+    console.log("Signup successful:", data);
+
+    alert("Signup successful! Please check your email or login.");
+
+    router.push("/loginSignup");
+
+  } catch (err: any) {
+    console.error("Signup error:", err.message);
+    alert(err.message);
   } finally {
     isSubmitting.value = false;
-    console.log(event);
   }
 }
 </script>
 
 <template>
-  <div class="mx-auto py-10 w-7/10">
+  <div class="mx-auto py-10 w-7/10 holder">
     <UForm
       :state="formState"
       :schema="formSchema"
@@ -55,7 +78,7 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
         label="Full Name"
         size="lg"
         required
-        class="w-full"
+        class="w-full form-field"
       >
         <UInput
           v-model="formState.fullName"
@@ -66,7 +89,7 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
           }"
         />
       </UFormField>
-      <UFormField name="email" label="Email" size="lg" required>
+      <UFormField name="email" label="Email" size="lg" required class="form-field">
         <UInput
           v-model="formState.email"
           class="w-full"
@@ -77,35 +100,15 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
           }"
         />
       </UFormField>
-      <!-- <UFormField name="phoneNumber" label="Phone Number" size="lg" required>
-        <div class="phone-number-container w-full">
-          <UInputMenu
-            v-model="value"
-            :items="items"
-            class="w-15/100"
-            :ui="{
-              base: 'bg-transparent text-indigo-950',
-            }"
-            
-          />
-          <UInput
-            v-model="formState.phoneNumber"
-            class="w-75/100"
-            placeholder="Enter phone no."
-            :ui="{
-              base: 'bg-transparent text-indigo-950',
-            }"
-          />
-        </div>
-      </UFormField> -->
       <UFormField
         name="password"
         label="Password"
         size="lg"
         required
-        class="w-full"
+        class="w-full form-field"
       >
         <UInput
+          v-model="formState.password"
           class="w-full"
           type="password"
           placeholder="Enter your password"
@@ -133,12 +136,6 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
 </template>
 
 <style scoped>
-/* .form{
-  display: flex;
-  flex-direction: column;
-} */
-
-/* assets/css/main.css OR <style> */
 .heading {
   font-family: "Raleway";
   font-weight: 500;
@@ -160,7 +157,6 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
   border-radius: 7px;
   box-sizing: border-box;
   padding: 15px;
-  /* box-shadow: 9px 10px 30px -2px rgba(0,0,0,0.45); */
   box-shadow:
     rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
@@ -168,5 +164,21 @@ async function formSubmission(event: FormSubmitEvent<Schema>) {
 
 .check-box-text {
   color: var(--secondary-color);
+}
+
+@media (max-width: 850px){
+  .holder{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  form{
+    width: 90%;
+
+    .form-field{
+      font-size: 1.2rem;
+    }
+  }
 }
 </style>
